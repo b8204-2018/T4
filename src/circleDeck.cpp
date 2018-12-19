@@ -10,8 +10,20 @@
 const char CREATE_ERROR[] = "Количество элементов дека должно быть натуральным числом";
 const char IS_FULL[] = "Дек переполнен";
 const char IS_EMPTY[] = "Дек пуст";
+const char NOT_INIT[] = "Невозможны операции с неопределенным деком";
 
 const int defSize = 10;
+
+void myDeck:: notInit(){
+    try{
+        if (size == 0){
+            throw ERR;
+        }
+    }
+    catch(int i){
+        std:: cout << NOT_INIT << std:: endl;
+    }
+};
 
 myDeck::myDeck() {
     size = defSize;
@@ -67,6 +79,7 @@ void myDeck::reInit(int n) {
 };
 
 void myDeck::push_front(int elem) {
+    notInit();
     if (front == 0) {
         front = size;
     }
@@ -82,6 +95,7 @@ void myDeck::push_front(int elem) {
 };
 
 void myDeck::push_back(int elem) {
+    notInit();
     if (back == size - 1) {
         back = -1;
     }
@@ -97,6 +111,7 @@ void myDeck::push_back(int elem) {
 };
 
 int myDeck::pop_front() {
+    notInit();
     try {
         if (front == back) {
             throw ERR;
@@ -109,6 +124,7 @@ int myDeck::pop_front() {
 };
 
 int myDeck::pop_back() {
+    notInit();
     try {
         if (front == back) {
             throw ERR;

@@ -17,7 +17,7 @@ struct myDeck{
     int pop_back();
     bool empty();
     void reInit(int n);
-
+    void notInit();
 };
 
 
