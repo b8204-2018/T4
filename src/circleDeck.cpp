@@ -14,7 +14,7 @@ const char NOT_INIT[] = "Невозможны операции с неопред
 
 const int defSize = 10;
 
-void myDeck:: notInit(){
+void myDeck::notInit(){
     try{
         if (size == 0){
             throw ERR;
@@ -139,4 +139,27 @@ int myDeck::pop_back() {
 bool myDeck::empty() {
     return (front == back);
 };
+
+void myDeck::print() {
+    notInit();
+    for (int i = front; i != back + 1; i++){
+        std:: cout << deck[i++] << ' ';
+        if (i == size){
+            i = 0;
+        }
+    }
+};
+
+int myDeck::length() {
+    notInit();
+    int count = 0;
+    for (int i = front; i != back + 1; i++){
+        count++;
+        i++;
+        if (i == size){
+            i = 0;
+        }
+    }
+    return count;
+}
 

@@ -18,6 +18,8 @@ struct myDeck{
     bool empty();
     void reInit(int n);
     void notInit();
+    void print();
+    int length();
 };
 
 
