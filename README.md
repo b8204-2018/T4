@@ -9,7 +9,7 @@
 
 | Операции\Структура | **1.Вектор** | **2.Вектор(циклический)** | **3.Список(односвязный)** | **4.Список(двусвязный)** |
 | ------------- |-------------| -----| ----- |  ----- |
-| **а. insert(element, index), delete(index), get(index), set(element, index)**      | Мандибура В| Бомко В | | |
+| **а. insert(element, index), delete(index), get(index), set(element, index)**      | Мандибура В| Бомко В | Ли В | |
 | **б. Стэк: push(element), pop()**      | Кайсарова А | | Клюка Е | НЕДОСТУПЕН |
 | **в. Очередь: push(element), pop()** | Самутина Н | | Резниченко И | Кокорин И |
 | **г. Дэк: left_push(element), right_push(element), left_pop(), right_pop()** | | Королева П |||
