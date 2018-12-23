@@ -1,5 +1,8 @@
 #include <iostream>
+<<<<<<< HEAD
 #include "stdio.h"
+=======
+>>>>>>> Queue with list 2
 
 using namespace std;
 
@@ -24,8 +27,13 @@ bool empty (queue *q) {
 
 int push(queue *Q, queue &A, int value) {
     Q->cur = new list;
+<<<<<<< HEAD
     Q->cur->data = value; //добавление элемента в конец
     Q->cur->next = NULL; //обнуление указателя на следующий элемент
+=======
+    Q->cur->data = value;
+    Q->cur->next = NULL;
+>>>>>>> Queue with list 2
     A.size++;
     if (Q->first == NULL) {
         Q->first = Q->cur;
@@ -42,9 +50,20 @@ int length(queue l) {
     return l.size; }
 
 int pop (queue *Q, queue &A) {
+<<<<<<< HEAD
     Q->first = Q->first->next; //смещение указателя
     A.size--;
     return A.size;
+=======
+    Q->cur = Q->first;
+    Q->first = Q->first->next; //смещение указателя
+    delete Q->cur;
+    if (Q->first == NULL) {
+        Q->last = NULL;
+    }
+    A.size--;
+    return 0;
+>>>>>>> Queue with list 2
 }
 
 int print(queue *q) {
@@ -69,7 +88,11 @@ int main() {
     cin >> n;
     init(q);
     m.size = 0;
+<<<<<<< HEAD
     for(int i = 0; i < n; i++) {
+=======
+    for (int i = 0; i < n; i++) {
+>>>>>>> Queue with list 2
         printf("Enter the number: ");
         cin >> a;
         push(q, m, a);
