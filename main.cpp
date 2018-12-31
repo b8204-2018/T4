@@ -20,7 +20,6 @@ struct List *add(List *&head, int value){
     elem->m_next = head;
     elem->m_length = head->m_length;
     head = elem;
-    //head->m_length++;
     return head;
 }
 
