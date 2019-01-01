@@ -3,4 +3,4 @@ project(T4)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(T4 main.cpp src/circleDeck.cpp src/circleDeck.h)
+add_executable(T4 test-main.cpp circleDeck.cpp circleDeck.h tests.cpp catch.hpp)
