@@ -11,11 +11,11 @@ struct myDeck{
     myDeck(int n);
     int* deck;
     int front, back;
+    bool empty;
     void push_front (int elem);
     void push_back (int elem);
     int pop_front();
     int pop_back();
-    bool empty();
     void print();
     int length();
 };
