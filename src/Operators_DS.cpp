@@ -3,6 +3,10 @@
 
 using namespace std;
 
+#define BAD_SIZE "Deque is incorrect size";
+#define IS_FULL  "Deque is full";
+#define IS_EMPTY "Deque is empty";
+
 //class double-ended-queue
 deque::deque(int n) {
     if (n > 1) {
@@ -12,7 +16,7 @@ deque::deque(int n) {
         left = 0;
         right = 0;
         count = 0;
-    } else { return; }// "Нельзя создать дэк такого размера!" //cap
+    } else { throw BAD_SIZE; }
 }
 
 void deque::left_push(int element) {
@@ -22,9 +26,9 @@ void deque::left_push(int element) {
         count++;
     } else {
         left--;
-        if (((size + left) % size) == ((size + right) % size)) {//Дэк полон
+        if (((size + left) % size) == ((size + right) % size)) {
             left++;
-            return;//cap
+            throw IS_FULL;
         } else {
             vector[(size + left) % size] = element;
             count++;
@@ -39,9 +43,9 @@ void deque::right_push(int element) {
         count++;
     } else {
         right++;
-        if (((size + left) % size) == ((size + right) % size)) {//Дэк полон
+        if (((size + left) % size) == ((size + right) % size)) {
             right--;
-            return;//cap
+            throw IS_FULL;
         } else {
             vector[(size + right) % size] = element;
             count++;
@@ -51,7 +55,10 @@ void deque::right_push(int element) {
 
 int deque::left_pop() {
     int result;
-    if (count == 0) { empty = true; }//cap
+    if (count == 0) {
+        empty = true;
+        throw IS_EMPTY;
+    }
     if (!empty) {
         count--;
         result = vector[(size + left) % size];
@@ -62,7 +69,10 @@ int deque::left_pop() {
 
 int deque::right_pop() {
     int result;
-    if (count == 0) { empty = true; }//cap
+    if (count == 0) {
+        empty = true;
+        throw IS_EMPTY;
+    }
     if (!empty) {
         count--;
         result = vector[(size + right) % size];
@@ -76,7 +86,7 @@ void deque::print() {
         for (int i = left; i <= right; i++) {
             cout << vector[(size + i) % size] << " ";
         }
-    }
+    } else { throw IS_EMPTY; }
 }
 
 int deque::length() {

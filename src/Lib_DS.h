@@ -1,18 +1,15 @@
-//
-// Created by denis on 03.01.19.
-//
-
 #ifndef T4_LIB_DS_H
 #define T4_LIB_DS_H
 
-class deque { //class double-ended-queue
+//class double-ended-queue
+class deque {
 private:
-    unsigned size;
-    int *vector;
-    bool empty;
-    int right;
-    int left;
-    int count;
+    unsigned size; //max size of deque
+    int *vector;  //cycle vector
+    bool empty;   //vector is empty
+    int right;    //low border of deque
+    int left;     //high border of deque
+    int count;    //count of elements of deque
 public:
     deque(int);
 
