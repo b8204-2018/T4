@@ -12,7 +12,7 @@
 | **а. insert(element, index), delete(index), get(index), set(element, index)**      | Мандибура В| Бомко В | Ли В | |
 | **б. Стэк: push(element), pop()**      | Кайсарова А | | Клюка Е | НЕДОСТУПЕН |
 | **в. Очередь: push(element), pop()** | Самутина Н | | Резниченко И | Кокорин И |
-| **г. Дэк: left_push(element), right_push(element), left_pop(), right_pop()** | | Королева П |||
+| **г. Дэк: left_push(element), right_push(element), left_pop(), right_pop()** | Попова Л | Королева П |||
 
 Для всех стурктур необходимы операции: print() и length().
 Подразумевается, что в структурах мы будет хранить целые числа. 
