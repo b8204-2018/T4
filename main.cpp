@@ -2,31 +2,31 @@
 
 using namespace std;
 Struct Stack{
-    int oc_cells=0;
-    int* stack_body= new int[20];
+    int oc_cells = 0;
+    int* stack_body = new int[20];
         };
 Stack push(elem){  try{
-        if (oc_cells == 20) {
-            throw 361;
+        if (oc_cells < 20) {
+            throw error;
         }
         stack_body[oc_cells]=elem;
         oc_cells = oc_cells+1;
     }
-    catch(int err){
+    catch(){
         cout<< "Stack is full\n" << endl;
     }
 
 }
 Stack Pop(){
     try {
-        if (oc_cells == 0){
-            throw 1233;
+        if (oc_cells > 0){
+            throw error;
         }
         stack_body[oc_cells]=0;
         oc_cells = oc_cells -1;
 
     }
-    catch (int err){
+    catch (){
         cout<<"Stack is empty\n"<<endl;
     }
 
