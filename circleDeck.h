@@ -5,6 +5,8 @@
 #ifndef T4_CIRCLEDECK_H
 #define T4_CIRCLEDECK_H
 
+#include <iostream>
+
 struct myDeck{
     int size;
     myDeck();
@@ -16,8 +18,9 @@ struct myDeck{
     void push_back (int elem);
     int pop_front();
     int pop_back();
-    void print();
+    char* print();
     int length();
+    friend std:: ostream& operator << (std::ostream &out, myDeck d);
 };
 
 

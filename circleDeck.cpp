@@ -31,6 +31,10 @@ myDeck::myDeck(int n) {
     empty = true;
 };
 
+std::ostream& operator << (std::ostream &out, myDeck d){
+    while (!d.empty) out << d.pop_front();
+    return out;
+};
 
 void myDeck::push_front(int elem) { //front указывает на ячейку, в которой уже есть элемент
     if (front == back && !empty) {
@@ -94,8 +98,7 @@ int myDeck::pop_back() {
     return deck[--back];
 };
 
-
-void myDeck::print() {
+char* myDeck::print() {
     for (int i = front; i != back + 1; i++) {
         std::cout << deck[i++] << ' ';
         if (i == size) {
@@ -106,7 +109,7 @@ void myDeck::print() {
 };
 
 int myDeck::length() {
-    if (front == back) {
+    if (empty) {
         return 0;
     } else {
         int count = 0;
