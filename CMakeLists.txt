@@ -3,4 +3,4 @@ project(Lfin)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Lfin main.cpp T4_lib/t4_operations.cpp T4_lib/t4_operations.h)
+add_executable(Lfin main.cpp libs/cycle_vector_library.cpp libs/cycle_vector_library.h)
