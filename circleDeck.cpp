@@ -3,6 +3,7 @@
 //
 
 #include <iostream>
+#include <sstream>
 #include "circleDeck.h"
 
 #define CREATE_ERROR "Deck's size must be an positive integer";
@@ -31,8 +32,8 @@ myDeck::myDeck(int n) {
     empty = true;
 };
 
-std::ostream& operator << (std::ostream &out, myDeck d){
-    while (!d.empty) out << d.pop_front();
+std::ostream &operator<<(std::ostream &out, myDeck d) {
+    while (!d.empty) out << d.pop_front() << ' ';
     return out;
 };
 
@@ -40,7 +41,7 @@ void myDeck::push_front(int elem) { //front указывает на ячейку
     if (front == back && !empty) {
         throw IS_FULL;
     }
-    if (empty){
+    if (empty) {
         empty = false;
     }
     if (front == 0) {
@@ -52,17 +53,16 @@ void myDeck::push_front(int elem) { //front указывает на ячейку
 };
 
 void myDeck::push_back(int elem) { //back указывает на пустую ячейку. В предыдущей ячейке есть элемент
-    if (back  == front && !empty) {
+    if (back == front && !empty) {
         throw IS_FULL;
     }
-    if (empty){
+    if (empty) {
         empty = false;
     }
     if (back + 1 == size) {
         back = 0;
         deck[size - 1] = elem;
-    }
-    else{
+    } else {
         deck[back++] = elem;
     }
 
@@ -77,7 +77,7 @@ int myDeck::pop_front() {
         front = 0;
         return deck[i];
     }
-    if (front + 1 == back && !empty){
+    if (front + 1 == back && !empty) {
         empty = true;
     }
 
@@ -88,24 +88,20 @@ int myDeck::pop_back() {
     if (empty) {
         throw IS_EMPTY;
     }
-    if (back - 1 < 0){
+    if (back - 1 < 0) {
         back = size;
     }
-    if (back - 1 == front && !empty){
+    if (back - 1 == front && !empty) {
         empty = true;
     }
 
     return deck[--back];
 };
 
-char* myDeck::print() {
-    for (int i = front; i != back + 1; i++) {
-        std::cout << deck[i++] << ' ';
-        if (i == size) {
-            i = 0;
-        }
-    }
-    std::cout << std::endl;
+const char *myDeck::print() {
+    std::ostringstream out;
+    out << this;
+    return out.str().c_str();
 };
 
 int myDeck::length() {

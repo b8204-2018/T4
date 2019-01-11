@@ -151,7 +151,10 @@ TEST_CASE("Printing", "[deck]"){
     }
 
     SECTION("Some elements"){
-
+        myDeck a;
+        a.push_front(1);
+        a.push_back(2);
+        CHECK(a.print() == "1 2 ");
     }
 
     SECTION("Full deck"){

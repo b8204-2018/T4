@@ -18,7 +18,7 @@ struct myDeck{
     void push_back (int elem);
     int pop_front();
     int pop_back();
-    char* print();
+    const char* print();
     int length();
     friend std:: ostream& operator << (std::ostream &out, myDeck d);
 };
