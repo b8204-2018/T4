@@ -1,91 +1,118 @@
-#include <vector>
 #include <iostream>
-#include <malloc.h>
 using namespace std;
 
-void print(const int *arr, const int leng) {
+struct vector {
+    int leng;
+    int *arr = new int[leng];
+};
+
+void create(vector &A) {
+    for (int i = 0; i <= A.leng; i++) {
+        A.arr[i] = i + 1;
+    }
+}
+
+void print(vector A) {
     cout << "Vector: ";
-    for (int i = 0; i < leng; i++) {
-        cout << arr[i] << " ";
+    for (int i = 0; i < A.leng; i++) {
+        cout << A.arr[i] << " ";
     }
     cout << endl;
 }
 
-void push_right ( int *&arr, int &leng, const int element_right ) {
-    leng++;
-    int *new_arr = new int[leng];
-    for (int i = 0; i < leng - 1; i++) {
-        new_arr[i] = arr[i];
+void push_right ( vector &A, const int element ) {
+    A.leng++;
+    int *new_arr = new int[A.leng];
+    for (int i = 0; i < A.leng - 1; i++) {
+        new_arr[i] = A.arr[i];
     }
-    new_arr[leng - 1] = element_right;
-    delete[] arr;
-    arr = new_arr;
+    new_arr[A.leng - 1] = element;
+    delete[] A.arr;
+    A.arr = new_arr;
 }
 
-void push_left ( int *&arr, int &leng, const int element_left) {
-    leng++;
-    int *new_arr = new int[leng];
-    for (int i = 1; i < leng; i++) {
-        new_arr[i] = arr[i - 1];
+void push_left ( vector &A, const int element) {
+    A.leng++;
+    int *new_arr = new int[A.leng];
+    for (int i = 1; i < A.leng; i++) {
+        new_arr[i] = A.arr[i - 1];
     }
-    new_arr[0] = element_left;
-    delete[] arr;
-    arr = new_arr;
+    new_arr[0] = element;
+    delete[] A.arr;
+    A.arr = new_arr;
 }
 
-void pop_right( int *&arr, int &leng ) {
-    leng--;
-    int *new_arr = new int[leng];
-    for (int i = 0; i < leng; i++) {
-        new_arr[i] = arr[i];
+void pop_right( vector &A ) {
+    A.leng--;
+    int *new_arr = new int[A.leng];
+    for (int i = 0; i < A.leng; i++) {
+        new_arr[i] = A.arr[i];
     }
-    delete[] arr;
-    arr = new_arr;
+    delete[] A.arr;
+    A.arr = new_arr;
 }
 
-void pop_left ( int *&arr, int &leng) {
-    leng--;
-    int *new_arr = new int[leng];
-    for (int i = 0; i < leng; i++) {
-        new_arr[i] = arr[i + 1];
+void pop_left ( vector &A) {
+    A.leng--;
+    int *new_arr = new int[A.leng];
+    for (int i = 0; i < A.leng; i++) {
+        new_arr[i] = A.arr[i + 1];
     }
-    delete[] arr;
-    arr = new_arr;
+    delete[] A.arr;
+    A.arr = new_arr;
+}
+
+int length(vector A) {
+    return A.leng;
 }
 
 int main()
 {
-    int *arr = new int[4] { 1, 2, 3, 4 };
-    int leng(4);
-    int element_right(25), element_left(18);
+    vector A;
+    int element(0);
+    cout << "Enter the size of array";
+    cin >> A.leng;
+    try {
+        if (A.leng > 0) {
+            create(A);
+            print(A);
+            char choice('-1');
+            while (choice != '0') {
+                cout << "Press 1 if you want to push element at the end\n"
+                        "Press 2 if you want to push element at the begining\n"
+                        "Press 3 if you want to pop element from the end \n"
+                        "Press 4 if you want to pop element from the begining\n"
+                        "Press 0 if you want to exit\n";
+                cin >> choice;
+                switch (choice) {
+                    case '1':
+                        cout << "Enter the element you want to push";
+                        cin >> element;
+                        push_right(A, element);
+                        print(A);
+                        break;
+                    case '2':
+                        cout << "Enter the element you want to push";
+                        cin >> element;
+                        push_left(A, element);
+                        print(A);
+                        break;
+                    case '3':
+                        pop_right(A);
+                        print(A);
+                        break;
+                    case '4':
+                        pop_left(A);
+                        print(A);
+                        break;
+                }
+            }
 
-    char choice('-1');
-    print(arr, leng);
-    while (choice != '0') {
-    cout << "Press 1 if you want to push element at the end\n"
-            "Press 2 if you want to push element at the begining\n"
-            "Press 3 if you want to pop element from the end \n"
-            "Press 4 if you want to pop element from the begining\n"
-            "Press 0 if you want to exit\n";
-    cin >> choice;
-        switch (choice) {
-            case '1':
-                push_right(arr, leng, element_right);
-                print(arr, leng);
-                break;
-            case '2':
-                push_left(arr, leng, element_left);
-                print(arr, leng);
-                break;
-            case '3':
-                pop_right(arr, leng);
-                print(arr, leng);
-                break;
-            case '4':
-                pop_left(arr, leng);
-                print(arr, leng);
-                break;
-        }
+        } else throw -1;
     }
+    catch (int a) {
+        cout << "Invalid size of array\n";
+    }
+
     return 0;
 }
