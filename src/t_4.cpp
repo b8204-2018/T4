@@ -55,8 +55,9 @@ char *Stack::print() {
     string str;
     if (!Is_empty()) {
         for (int i = 0;  i < Max; i++) {
-            str= str + to_string(arr[i]);
+            str= str + to_string(arr[i])+' ';
         }
+        cout<<str<<endl;
         return (char *) str.c_str();
     }
 }
