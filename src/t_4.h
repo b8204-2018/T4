@@ -13,7 +13,7 @@ private:
     int count;//счётчик кол-ва элементов в стеке
 public:
     Stack(int);
-    
+
     bool Push(int);
 
     bool Is_empty() ;
@@ -22,11 +22,9 @@ public:
 
     int Pop();
 
-    void print();
+    char *print();
 
     int length();
 
 };
-
-
 #endif //T4_T_4_H
