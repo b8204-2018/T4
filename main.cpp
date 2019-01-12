@@ -11,10 +11,7 @@ int main() {
        st.Push(i+1);
     }
 
-    char *b = new char[st.length() * 2];
-    memcpy(b, st.print(), st.length() * 2);
-    cout << b;
-    delete b;
+    st.print();
 
     for (int i(0); !st.Is_empty(); i++) {
         cout << st.Pop() << endl;
