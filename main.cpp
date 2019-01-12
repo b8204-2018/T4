@@ -7,12 +7,12 @@ Struct Stack{
         };
 Stack push(elem){  try{
         if (oc_cells < 20) {
-            throw error;
+            throw ;
         }
         stack_body[oc_cells]=elem;
         oc_cells = oc_cells+1;
     }
-    catch(){
+    catch(...){
         cout<< "Stack is full\n" << endl;
     }
 
@@ -20,13 +20,13 @@ Stack push(elem){  try{
 Stack Pop(){
     try {
         if (oc_cells > 0){
-            throw error;
+            throw ;
         }
         stack_body[oc_cells]=0;
         oc_cells = oc_cells -1;
 
     }
-    catch (){
+    catch (...){
         cout<<"Stack is empty\n"<<endl;
     }
 
