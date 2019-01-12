@@ -1,5 +1,6 @@
 #include <iostream>
-#include "src/Lib_DS.h"
+#include "deque.h"
+#include "string.h"
 
 using namespace std;
 
@@ -14,13 +15,18 @@ int main() {
             a.left_push(i);
             a.right_push(i);
         }
-        a.print();
+        char *buf = new char[a.length() * 2];
+        memcpy(buf, a.print(), a.length() * 2);
+        cout << buf;
+        delete buf;
         cout << "\nДлина=" << a.length() << endl;
         cout << "Pop=" << a.left_pop() << endl;
         cout << "Pop=" << a.right_pop() << endl;
         cout << "Pop=" << a.right_pop() << endl;
         cout << "Pop=" << a.right_pop() << endl;
-        a.print();
+        buf = new char[a.length() * 2];
+        memcpy(buf, a.print(), a.length() * 2);
+        cout << buf;
         cout << "\nДлина=" << a.length();
     }
     catch (const char *error) {

@@ -21,7 +21,7 @@ public:
 
     int right_pop();
 
-    void print();
+    char *print();
 
     int length();
 

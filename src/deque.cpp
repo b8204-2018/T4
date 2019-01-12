@@ -1,5 +1,7 @@
 #include <iostream>
-#include "Lib_DS.h"
+#include <string>
+#include <stdio.h>
+#include "deque.h"
 
 using namespace std;
 
@@ -81,12 +83,14 @@ int deque::right_pop() {
     }
 }
 
-void deque::print() {
+char *deque::print() {
     if (!empty) {
+        std::string str;
         for (int i = left; i <= right; i++) {
-            cout << vector[(size + i) % size] << " ";
+            str = str + std::to_string(vector[(size + i) % size]) + " ";
         }
-    } else { throw IS_EMPTY; }
+        return (char *) str.c_str();
+    }
 }
 
 int deque::length() {
