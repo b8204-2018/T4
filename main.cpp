@@ -21,11 +21,11 @@ bool empty (queue *q) {
     else return false;
     }
 
-int push(queue *Q, queue &A, int value) {
+int push(queue *Q, int value) {
     Q->cur = new list;
     Q->cur->data = value;
     Q->cur->next = NULL;
-    A.size++;
+    Q->size++;
     if (Q->first == NULL) {
         Q->first = Q->cur;
         Q->last = Q->cur;
@@ -37,18 +37,18 @@ int push(queue *Q, queue &A, int value) {
     return 0;
 }
 
-int length(queue l) {
-    return l.size; }
+int length(queue *l) {
+    return l->size; }
 
-int pop (queue *Q, queue &A) {
+int pop (queue *Q) {
     Q->cur = Q->first;
     Q->first = Q->first->next; //смещение указателя
     delete Q->cur;
     if (Q->first == NULL) {
         Q->last = NULL;
     }
-    A.size--;
-    return A.size;
+    Q->size--;
+    return Q->size;
 }
 
 int print(queue *q) {
@@ -67,24 +67,22 @@ int print(queue *q) {
 
 int main() {
     queue *q;
-    queue m;
     int a, n;
     int emp = 0;
     cin >> n;
     init(q);
-    m.size = 0;
     for (int i = 0; i < n; i++) {
         printf("Enter the number: ");
         cin >> a;
-        push(q, m, a);
+        push(q, a);
     }
     cout << "Length is: ";
-    cout << length(m) << "\n";
+    cout << length(q) << "\n";
     cout << "Queue is: ";
     print(q);
     cout << "\n";
     while(q->first != NULL) {
-        emp = pop(q, m);
+        emp = pop(q);
     }
     if (emp == 0){
         cout << "Queue is empty";
