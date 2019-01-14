@@ -1,62 +1,86 @@
 #include "cycle_vector_library.h"
 #include <iostream>
+#include <cstring>
+
+#define WRONG_SIZE "Incorrect size of vector";
+#define WRONG_INDEX "Incorrect index number";
+#define ZERO_CELLS_NUMBER "Cannot delete last cell";
 
 using namespace std;
 
 cyc_vector::cyc_vector(int var)
 {
-    vector_size = var;
-    vector = (int*)calloc(vector_size ,sizeof(int*));
+    if (var >= 1) {
+        vector_size = var;
+        vector = (int *) calloc(vector_size, sizeof(int *));
+    } else {throw WRONG_SIZE};
 };
 
 cyc_vector::~cyc_vector()
 {
     free(vector);
     vector = 0;
+    vector_size = 0;
 };
 
 void cyc_vector::set(int element,int index)
 {
-    vector[index % vector_size] = element;
-};
-
-void cyc_vector::get(int index)
-{
-    cout << vector[index % vector_size] << endl;
-};
-
-void cyc_vector::print()
-{
-    for(int i = 0; i<vector_size; i++){
-        cout << vector[i] << " ";
+    if (index < 0) {
+        {throw WRONG_INDEX};
+    }else {
+        vector[index % vector_size] = element;
     }
-    cout << endl;
 };
 
-void cyc_vector::length()
+int cyc_vector::get(int index)
 {
-    cout << vector_size << endl;
+    if (index < 0) {
+        {throw WRONG_INDEX};
+    }else {
+        return vector[index % vector_size];
+    }
+};
+
+char* cyc_vector::print()
+{
+    string  line("");
+    string element;
+    for(int i = 0; i<vector_size; i++){
+        element = to_string(vector[i]);
+        line = line + element + " ";
+    }
+    cout << line << endl;
+    char * result = new char[vector_size*2];
+    strcpy(result,line.c_str());
+    return result;
+};
+
+int cyc_vector::length()
+{
+    return vector_size;
 };
 
 void cyc_vector::del(int index)
 {
-    if (vector_size > 1) {              // !!!!!
-        index = index % vector_size;
-        for (int i = index - 1; i < vector_size; i++)
-            vector[i] = vector[i + 1];
-        vector_size--;
-        vector = (int *) realloc(vector, sizeof(int *) * vector_size);
-    }else(free(vector));
+    if (vector_size < 2) {throw ZERO_CELLS_NUMBER}
+    else {
+        if (vector_size > 1) {
+            if (index != 0){index = index % vector_size;}
+            for (int i = index; i < vector_size; i++)
+                vector[i] = vector[i + 1];
+            vector_size--;
+            vector = (int *) realloc(vector, sizeof(int *) * vector_size);
+        }
+    };
 };
 
-void cyc_vector::insert(int element, int index)
-{
-    index = index % vector_size;
-    vector_size++;
-    vector = (int*)realloc(vector,sizeof(int*)*vector_size);
-    for (int i = vector_size; i>=index; i--)
-        vector[i] = vector[i-1];
-    vector[index-1] = element;
+void cyc_vector::insert(int element, int index) {
+        if (index != 0){index = index % vector_size;}
+        vector_size++;
+        vector = (int *) realloc(vector, sizeof(int *) * vector_size);
+        for (int i = vector_size; i > index; i--)
+            vector[i] = vector[i - 1];
+        vector[index] = element;
 };
 
 void cyc_vector::fill()
