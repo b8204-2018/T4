@@ -12,6 +12,10 @@ TEST(SetFunctionTest,AllTests){
     int testing_num = 99;
     example.set(testing_num,5);
     ASSERT_EQ(testing_num,example.vector[5]);
+    // re-set in index
+    testing_num = 10;
+    example.set(testing_num,5);
+    ASSERT_EQ(testing_num,example.vector[5]);
 }
 
 TEST(GetFunctionTest, AllTests){
@@ -58,7 +62,12 @@ TEST(InsertFunctionTest,AllTest) {
     example.insert(99, 3); // add middle pos
     ASSERT_EQ(example.vector_size, 7);
     ASSERT_STREQ(example.print(), "99 0 0 99 0 0 0 ");
-    example.insert(99, 6); // add last pos
+    // + add in this position
+    example.insert(88, 3); // add middle pos
     ASSERT_EQ(example.vector_size, 8);
-    ASSERT_STREQ(example.print(), "99 0 0 99 0 0 99 0 ");
+    ASSERT_STREQ(example.print(), "99 0 0 88 99 0 0 0 ");
+    example.insert(99, 7); // add last pos
+    ASSERT_EQ(example.vector_size, 9);
+    ASSERT_STREQ(example.print(), "99 0 0 88 99 0 0 99 0 ");
 }
+
