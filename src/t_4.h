@@ -1,5 +1,5 @@
-#ifndef T_4_CPP_STACK_H
-#define T_4_CPP_STACK_H
+#ifndef T4_T_4_H
+#define T4_T_4_H
 
 class Stack {
 private:
@@ -18,10 +18,9 @@ public:
 
     int Pop();
 
-    void print();
+    char *print();
 
     int length();
 
 };
-
-#endif //T_4_CPP_STACK_H
+#endif //T4_T_4_H
