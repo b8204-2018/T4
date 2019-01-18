@@ -1,27 +1,27 @@
 #include <iostream>
+#include "gtest/gtest.h"
 
 using namespace std;
 
 struct list {
     int data;
     struct list *next;
-    };
+};
 struct queue {
     short int size;
     struct list *first, *last, *cur;
-    };
+};
 
 void init(queue *q) {
     q->first = NULL;
     q->last = NULL;
-    }
+}
 
 bool empty (queue *q) {
-    if (q->first==q->last) return true;
-    else return false;
-    }
+    return (q->first==q->last);
+}
 
-int push(queue *Q, int value) {
+void push(queue *Q, int value) {
     Q->cur = new list;
     Q->cur->data = value;
     Q->cur->next = NULL;
@@ -34,7 +34,6 @@ int push(queue *Q, int value) {
         Q->last->next = Q->cur;
         Q->last = Q->cur;
     }
-    return 0;
 }
 
 int length(queue *l) {
@@ -53,33 +52,27 @@ int pop (queue *Q) {
 
 int print(queue *q) {
     int p;
-    if(empty(q)== true) {
-        cout << "Empty!\n";
-    }
-    q->cur = q->first;
     while (q->cur != NULL) {
         p = q->cur->data;
         cout << q->cur->data;
         q->cur = q->cur->next;
     }
-    return 0;
+    q->cur = q->first;
+    return (empty(q)== true);
 }
 
 int main() {
     queue *q;
-    int a, n;
     int emp = 0;
-    cin >> n;
     init(q);
-    for (int i = 0; i < n; i++) {
-        printf("Enter the number: ");
-        cin >> a;
+    int a = 1;
+    for (int i = 0; i < 5; i++) {
         push(q, a);
+        print(q);
+        a++;
     }
     cout << "Length is: ";
     cout << length(q) << "\n";
-    cout << "Queue is: ";
-    print(q);
     cout << "\n";
     while(q->first != NULL) {
         emp = pop(q);
@@ -87,5 +80,14 @@ int main() {
     if (emp == 0){
         cout << "Queue is empty";
     }
+
+    TEST( Test, push_left) {
+        Tvector  A;
+        int element(18);
+        create(A);
+        push_left(A, element);
+        EXPECT_EQ(A.arr[0], element);
+    }
+
     return 0;
 }
