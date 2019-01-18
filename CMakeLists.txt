@@ -16,8 +16,9 @@ include_directories(src) # необходимо для того, чтобы пи
 include_directories(googletest/googletest/include)
 
 
-set(SOURCE_FILES src/queue.cpp src/queue.cpp)
+set(SOURCE_FILES src/queue.cpp src/queue.h)
 
-add_executable(main main.cpp ${SOURCE_FILES} src/queue.cpp)
+add_executable(main main.cpp ${SOURCE_FILES})
+add_executable(tests tests.cpp ${SOURCE_FILES} tests.cpp)
 
 target_link_libraries(main gtest)
