@@ -19,7 +19,7 @@ struct queue
 	void fill();
 	void change_ind();
 	void insert(int element, int ind);
-	oid deletE( int ind);
+	void deletE( int ind);
 	int get( int ind);
 	void set( int elem, int ind);
 	void print();

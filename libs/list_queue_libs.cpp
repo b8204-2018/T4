@@ -26,7 +26,7 @@ void queue::set_ind( list *p) {
 	p->index = last->index++;
 }
 //добавление элемента в список
-void  add_elem( int val)//p-указатель список,number-доьавляемый элемент
+void  queue::add_elem( int val)//p-указатель список,number-доьавляемый элемент
 {
 	struct list *el = new list;
 	set_ind(el);
