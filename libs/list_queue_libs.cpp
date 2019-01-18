@@ -10,57 +10,57 @@ using namespace std;
 
 
 //инициализация
-void init(queue *q) {
-	q->first->index = 0;
-	q->last->index = 0;
-	q->first = NULL;
-	q->last = NULL;
+void queue:: init() {
+	first->index = 0;
+	last->index = 0;
+	first = NULL;
+	last = NULL;
 }
 //проверка на пустоту
-bool empty(queue *q) {
-	if (q->first == q->last&&q->last == NULL) return true;
+bool  queue::empty() {
+	if (first == last&&last == NULL) return true;
 	else return false;
 }
 //определение индекса
-void set_ind(queue *q, list *p) {
-	p->index = q->last->index++;
+void queue::set_ind( list *p) {
+	p->index = last->index++;
 }
 //добавление элемента в список
-void  add_elem(queue *P, int val)//p-указатель список,number-доьавляемый элемент
+void  add_elem( int val)//p-указатель список,number-доьавляемый элемент
 {
 	struct list *el = new list;
-	set_ind(P, el);
+	set_ind(el);
 	el->data = val;
 	el->data = NULL;
-	if (empty(P) == true) {
-		P->first = el;
-		P->last = el;
+	if (empty() == true) {
+		first = el;
+		last = el;
 	}
 	else {
-		P->cur = P->last;
-		P->cur->next = el;
-		P->last = el;
-		P->last = P->cur;
+		cur = last;
+		cur->next = el;
+		last = el;
+		last = cur;
 	}
 
 }
 //заполнение списка
-void fill(queue *P) {
+void  queue::fill() {
 	int k, l;
 	cout << "введите кол-во символов " << endl;
 	cin >> k;
 	cout << "введите значения ";
 	for (int i = 0; i < k; i++) {
 		cin >> l;
-		add_elem(P, l);
+		add_elem( l);
 	}
 }
-void change_ind(queue *P) {
+void  queue::change_ind() {
 	int i = 1;
-	P->cur = P->first;
-	while (P->cur->next == NULL) {
-		P->cur->index = i;
-		P->cur = P->cur->next;
+	cur = first;
+	while (cur->next == NULL) {
+		cur->index = i;
+		cur = cur->next;
 		i++;
 	}
 }
@@ -68,55 +68,55 @@ void change_ind(queue *P) {
 -если задаваемый индекс больше наиьольшего, то добавляемому элементу присваивает индекс больше на 1 последнего
 -индекс не может быть залан меньше еденицы
 */
-void insert(queue *P, int element, int ind) {
-	if (empty(P) != true) {
-		P->cur = P->first;
-		while ((P->cur->index == ind) || (P->cur->next == NULL)) {
-			P->cur = P->cur->next;
+void  queue::insert(int element, int ind) {
+	if (empty() != true) {
+		cur = first;
+		while ((cur->index == ind) || (cur->next == NULL)) {
+			cur = cur->next;
 		};
-		if (P->cur->next = NULL) {
-			add_elem(P, element);
+		if (cur->next = NULL) {
+			add_elem( element);
 		}
 		else {
 			struct list *cur_next = new list;
 			struct list *k = new list;//новая переменная
 			k->data = element;
 			//вставляем k
-			cur_next = P->cur->next;
-			P->cur->next = k;
+			cur_next = cur->next;
+			cur->next = k;
 			k->next = cur_next;
 			//перенумировывание
-			change_ind(P);
+			change_ind();
 
 		}
 
 	}
 	else {
-		add_elem(P, element);
+		add_elem( element);
 	}
 }
 //Удаляет элемент по индексу
-void deletE(queue *P, int ind) {
-	if (empty(P) != true) {
+void  queue::deletE( int ind) {
+	if (empty() != true) {
 		struct list *cur_next = new list;
 		struct list *cur_pred = new list;
 		if (ind == 1) {
-			P->cur = P->first;
-			P->first = P->first->next;
-			delete(P->cur);
-			change_ind(P);
+			cur = first;
+			first = first->next;
+			delete(cur);
+			change_ind();
 		}
 		else {
-			P->cur = P->first->next;
-			cur_pred = P->first;
-			while ((P->cur->index == ind) || (P->cur->next == NULL)) {
-				P->cur = P->cur->next;
+			cur = first->next;
+			cur_pred = first;
+			while ((cur->index == ind) || (cur->next == NULL)) {
+				cur = cur->next;
 				cur_pred = cur_pred->next;
 			};
-			if (P->cur->next != NULL) {
-				cur_pred = P->cur->next;
-				delete(P->cur);
-				change_ind(P);
+			if (cur->next != NULL) {
+				cur_pred = cur->next;
+				delete(cur);
+				change_ind();
 
 			}
 
@@ -124,40 +124,40 @@ void deletE(queue *P, int ind) {
 	}
 }
 //показывает чему равен элемент по индексу
-int get(queue *P, int ind) {
-	P->cur = P->first;
+int  queue::get( int ind) {
+	cur = first;
 
-	while ((P->cur->index == ind) || (P->cur->next = NULL)) {
-		P->cur = P->cur->next;
+	while ((cur->index == ind) || (cur->next = NULL)) {
+		cur = cur->next;
 	}
-	if (P->cur->next = NULL) {
+	if (cur->next = NULL) {
 		return -909;
 	}
 	else {
-		return P->cur->data;
+		return cur->data;
 	}
 }
 //устанавливает элемент в индекс
-void set(queue *P, int elem, int ind) {
-	P->cur = P->first;
-	while ((P->cur->index == ind) || (P->cur->next == NULL)) {
-		P->cur = P->cur->next;
+void  queue::set( int elem, int ind) {
+	cur = first;
+	while ((cur->index == ind) || (cur->next == NULL)) {
+		cur = cur->next;
 	}
-	if ((P->cur->next != NULL))P->cur->data = elem;
+	if ((cur->next != NULL)) cur->data = elem;
 
 }
 
-void print(queue *P) {
-	P->cur = P->first;
-	while ((P->cur->next == NULL)) {
-		cout << P->cur->data << " ";
-		P->cur = P->cur->next;
+void  queue::print() {
+	cur = first;
+	while ((cur->next == NULL)) {
+		cout << cur->data << " ";
+		cur = cur->next;
 
 	}
 
 }
-int lenghtS(queue *P) {
-	if (empty(P) != true)return P->last->index;
+int  queue::lenghtS() {
+	if (empty() != true)return last->index;
 	else return 0;
 }
 
