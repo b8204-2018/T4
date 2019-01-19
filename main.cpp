@@ -1,45 +1,9 @@
 #include <iostream>
+#include "Src\Stack.h "
 
 using namespace std;
-Struct Stack{
-    int oc_cells = 0;
-    int* stack_body = new int[20];
-        };
-Stack push(elem){  try{
-        if (oc_cells < 20) {
-            throw ;
-        }
-        stack_body[oc_cells]=elem;
-        oc_cells = oc_cells+1;
-    }
-    catch(...){
-        cout<< "Stack is full\n" << endl;
-    }
-
-}
-Stack Pop(){
-    try {
-        if (oc_cells > 0){
-            throw ;
-        }
-        stack_body[oc_cells]=0;
-        oc_cells = oc_cells -1;
-
-    }
-    catch (...){
-        cout<<"Stack is empty\n"<<endl;
-    }
-
-}
-Stack show(){ int i=0;
-    while(i<=oc_cells){
-        cout<<i<<" "<<stack_body[i] << endl;
-        i++;
-    }
-
-}
-
 int main() {
+    Stack Stack1;
     int elem;
     int call=-1;
     while (call != 3) {
@@ -52,13 +16,15 @@ int main() {
             case 1 :
                 cout << " Input element that you want to add to stack\n";
                 cin >> elem;
-                push(elem);
+                Stack1.Push(elem);
+
                 break;
             case 2 :
-                pop();
+                Stack1.Pop();
                 break;
             case 4 :
-                show();
+                Stack1.show();
+
                 break;
             default :
                 cout << "why do you do this";
