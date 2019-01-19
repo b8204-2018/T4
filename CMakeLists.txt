@@ -3,4 +3,4 @@ project(T4)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(T4 main.cpp src/t_4.cpp src/t_4.h)
+add_executable(T4 main.cpp src/Deque.cpp src/Deque.h)
