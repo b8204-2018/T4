@@ -33,29 +33,44 @@ struct spisok{
     }
 
     void deleteElem() {
-        elementSpiska *delElem = Tail;
-        elementSpiska *newTail = Head;
-        bool found = false;
-        if (delElem == newTail){
-            delete delElem;
-            Head = Tail = nullptr;
-        }
-        else {
-            while (found == false) {
-                if (newTail->Next == delElem) {
-                    delete delElem;
-                    newTail->Next = nullptr;
-                    Tail = newTail;
-                    found = true;
+        try {
+            elementSpiska *delElem = Tail;
+            elementSpiska *newTail = Head;
+            if (delElem == nullptr && newTail == nullptr)
+                throw 123;
+            bool found = false;
+            if (delElem == newTail) {
+                delete delElem;
+                Head = Tail = nullptr;
+            } else {
+                while (found == false) {
+                    if (newTail->Next == delElem) {
+                        delete delElem;
+                        newTail->Next = nullptr;
+                        Tail = newTail;
+                        found = true;
+                    }
+                    newTail = newTail->Next;
                 }
-                newTail = newTail->Next;
             }
+        }
+        catch (int) {
+            cout << "Your list is empty";
+            cout << endl;
         }
     }
 
     void delAllSpisok(){
-        while(Head != nullptr)
-            deleteElem();
+        try {
+            if (Head == nullptr && Tail == nullptr)
+                throw 123;
+            while (Head != nullptr)
+                deleteElem();
+        }
+        catch(int){
+            cout << "Your list is empty";
+            cout << endl;
+        }
     }
 
     void printSpisok(){
@@ -71,11 +86,11 @@ struct spisok{
 int main(){
     spisok list;
     size_t NumbElem;
-    cout << "Enter how many elements in the list :";
+    cout << "Enter how many elements in the list : ...(NE vvodite CHAR, nado int)";
     cin >> NumbElem;
     for(int i = 0; i < NumbElem; i++){
         int elem;
-        cout << "The value of the item you want to add to the queue: ";
+        cout << "The value of the item you want to add to the queue:... (NE vvodite CHAR, nado int) ";
         cin >> elem;
         cout << endl;
         list.addElemInSpisok(elem);
@@ -96,7 +111,7 @@ int main(){
         cout << "Enter the number of the function you wish to perform: " << endl;
         cin >> act;
         if (act == 1){
-            cout << "The value of the item you want to add to the queue: ";
+            cout << "The value of the item you want to add to the queue: ... (NE vvodite char, nado int)";
             int elem;
             cin >> elem;
             list.addElemInSpisok(elem);
