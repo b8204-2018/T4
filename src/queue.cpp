@@ -2,7 +2,7 @@
 #include "gtest/gtest.h"
 #include "queue.h"
 
-const int max = 5;
+const int mmax = 5;
 
 using namespace std;
 
@@ -16,10 +16,10 @@ bool empty (queue *q) {
 }
 
 void push(queue *Q, int value) {
-    if ( Q->size == max){
+    if ( Q->size == mmax){
         throw std::length_error ("Queue is full.");
     }
-    Q->cur = new list;
+    Q->cur = new queue;
     Q->cur->data = value;
     Q->cur->next = NULL;
     Q->size++;
@@ -34,6 +34,9 @@ void push(queue *Q, int value) {
 }
 
 int length(queue *l) {
+    if (l == nullptr) {
+        return  0;
+    }
     return l->size; }
 
 int pop (queue *Q) {

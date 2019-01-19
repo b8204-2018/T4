@@ -1,13 +1,10 @@
 #ifndef T4_QUEUE_H
 #define T4_QUEUE_H
 
-struct list {
-    int data;
-    struct list *next;
-};
 struct queue {
     short int size;
-    struct list *first, *last, *cur;
+    int data;
+    struct queue *first, *last, *cur, *next;
 };
 
 void init(queue *q);
