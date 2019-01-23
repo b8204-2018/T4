@@ -1,50 +1,58 @@
-#include "base64.hpp"
-#include "gtest/gtest.h"
+//
+// Created by igor on 23.01.19.
+//
+#include "src/queue2linklist.h"
+#include <gtest/gtest.h>
+#include <iostream>
 
-TEST(Encode, threeLetters) {
-char *s = base64_encode((const char*)"ups");
-EXPECT_STREQ(s, "dXBz");
+
+TEST(Length, emptyList) {
+    queue *list(nullptr);
+    EXPECT_EQ(length(list), 0);
 }
 
-
-TEST(Encode, fourLetters) {
-char *s = base64_encode((const char*)"oops");
-EXPECT_STREQ(s, "b29wcw==");
+TEST(Length, notEmptyList) {
+    queue *list(nullptr);
+    push(list, 1);
+    EXPECT_EQ(length(list), 1);
+    push(list, 2);
+    EXPECT_EQ(length(list), 2);
+    pop(list);
+    EXPECT_EQ(length(list), 1);
 }
 
-TEST(Encode, fiveLetters) {
-char *s = base64_encode((const char*)"param");
-EXPECT_STREQ(s, "cGFyYW0=");
+TEST(Push, PushLessThanMax) {
+    queue *list(nullptr);
+    for (int i = 1; i <7; i++){
+        push(list, i);
+    }
+    EXPECT_EQ(length(list), 7);
 }
 
-
-TEST(Encode, empty) {
-char *s = base64_encode((const char*)"");
-EXPECT_STREQ(s, "");
+TEST(Push, PushMax) {
+    queue *list(nullptr);
+    for (int i = 1; i <= 7; i++){
+        push(list, i);
+    }
+    EXPECT_THROW(push(list, 1), std::length_error);
 }
 
-TEST(Decode, noEqualSigns) {
-char *s = base64_decode((const char*)"ZG9n");
-EXPECT_STREQ(s, "dog");
+TEST(Pop, Pop_element) {
+    queue *list(nullptr);
+    int i;
+    for (i = 1; i < 7; i++){
+        push(list, i);
+    }
+    pop(list);
+    EXPECT_EQ(length(list),6);
 }
 
-
-TEST(Decode, twoEqualSigns) {
-char *s = base64_decode((const char*)"ZG9nZw==");
-EXPECT_STREQ(s, "dogg");
+TEST(Pop, nothingToPop) {
+    queue *list(nullptr);
+    EXPECT_THROW(pop(list), std::length_error);
 }
 
-TEST(Decode, empty) {
-char *s = base64_decode((const char*)"");
-EXPECT_STREQ(s, "");
-}
-
-TEST(Decode, oneEqualSign) {
-char *s = base64_decode((const char*)"ZG9nIGc=");
-EXPECT_STREQ(s, "dog g");
-}
-
-int main(int argc, char **argv) {
+int main(int argc, char ** argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
 }
