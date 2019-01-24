@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/cygdrive/d/GIT/ROMAN/T4/src/Funck.cpp
+iostream
+-
+Funck.h
+/cygdrive/d/GIT/ROMAN/T4/src/Funck.h
+
+/cygdrive/d/GIT/ROMAN/T4/src/Funck.h
+
