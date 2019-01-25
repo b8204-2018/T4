@@ -1,21 +1,13 @@
 #include <iostream>
-#include "src/Deque.h"
+#include "Deque.h"
 //#include "gtest/gtest.h"
 using namespace std;
 
 int main() {
-
     int size = 8;
     Deque ar(size);
 
-    for (int i = 1; i < size; i++)
-    {
-       ar.PushFront(i+1);
-    }
-
     ar.Print();
-
-
     int el = 0;
 
 
@@ -59,7 +51,7 @@ int main() {
                 } else throw -1;
             }
         catch(int a) {
-            cout <<"Invalid size of array\n";
+            cout <<"Invalid size of array" << endl;
         }
     return 0;
 }

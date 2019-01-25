@@ -1,5 +1,5 @@
-#ifndef T4_CPP_DEQUE_H
-#define T4_CPP_DEQUE_H
+#ifndef DEQUE_CPP_DEQUE_H
+#define DEQUE_CPP_DEQUE_H
 
 class Deque {
 private:
@@ -7,8 +7,7 @@ private:
     int max;
     int n;
     int size;
-    int start_;
-    int end_;
+
 
 
 public:
@@ -22,4 +21,4 @@ public:
     int length();
 };
 
-#endif //T_4_CPP_STACK_H
+#endif //DEQUE_CPP_DEQUE_H

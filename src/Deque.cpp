@@ -4,115 +4,83 @@
 
 using namespace std;
 //
-const int number = 8;
         Deque::Deque(int number)
-        {   if (number > 1) {
-                size = number;
-                d = new int[size];
-                start_ = 0;
-                end_ = 0;
-                n = 0;
-            }
-            else cout << "Incorrect size";
+        {
+                if (number > 1) {
+                    d = new int[size];
+                    n = 0;
+                } else throw "Incorrect size" << endl;
         }
 
 
 void Deque::PushFront(int element) {
-    if (n == size) {
-        cout << "Overflow";
-    }
-    else if (n == 0) {
-        d[start_] = element;
-        n++;
-    }
-    else {
-        if (start_ == 0) {
-            start_ = size - 1;
-            d[start_] = element;
-            n++; }
-        else {
-            start_--;
-            d[start_] = element;
-            n++; }
-    }
+        if (n != size) {
+		int *arr1 = new int[++n];
+		for (int i = 1; i < length; i++) {
+			arr1[i] = d[i-1];
+		}
+		delete[] d;
+		arr1[0] = element;
+		memcpy(d, arr1, sizeof(int)*n)
+		}
+		else
+       throw "Overflow";
 }
 
 void Deque::PushBack(int element) {
-    if (n == size) {
-        cout << "Overflow";
-    }
-    else if (n == 0) {
-        d[end_] = element;
-        n++;
-    }
-    else {
-        if (end_ == size - 1) {
-            end_ = 0;
-            d[end_] = element;
-            n++; }
-        else {
-            end_++;
-            d[end_] = element;
-            n++;
-        }
-    }
+            if (n != size) {
+		int *arr1 = new int[++n];
+		for (int i = 0; i < (n - 1); i++) {
+			arr1[i] = d[i-1];
+		}
+		delete[] d;
+		arr1[n] = element;
+		memcpy(d, arr1, sizeof(int)*n)
+		}
+		else
+       throw "Overflow";
 }
 
 int Deque::PopFront () {
     int a;
-    if (n != 0 && (start_ == end_)) {
-        a = d[start_];
-        n--;
-        return a;
-    }
-    else if (n == 0) {
-        cout << "Deque is empty";
-        return -1;
-    }
-    else
-    {
-        a = d[start_];
-        if (start_ == size - 1) {
-            start_ = 0; n--;
-        }
-        else {
-            start_++;
-            n--;
-        }
-        return a;
-    }
-}
+        if (n != 0) {
+        int *arr1 = new int[--n];
+		for (int i = 1; i < n; i++) {
+			arr1[i - 1] = d[i];
+		}
+		a = d[0];
+		delete[] d;
+		memcpy(d, arr1, sizeof(int)*n)
+		return a;
+		}
+		else if (n == 0)
+            throw "Deque is empty";
+ }
 
 int Deque::PopBack() {
     int a;
-    if (n != 0 && (start_ == end_)) {
-        a = d[end_];
-        n--;
-        return a; }
-    else if (n == 0) {
-        cout << "Deque is empty";
-        return -1;
-    }
-    else
-    {
-        a = d[end_];
-        if (end_ == 0) {
-            end_ = size - 1;
-            n--;
-        }
-        else {
-            end_--;
-            n--; }
-        return a;
-    }
+        if (n != 0) {
+        int *arr1 = new int[--n];
+		for (int i = 1; i < n; i++) {
+			arr1[i - 1] = d[i];
+		}
+		a = d[n+1];
+		delete[] d;
+		memcpy(d, arr1, sizeof(int)*n)
+		return a;
+		}
+		else if (n == 0)
+            throw "Deque is empty";
+ }
+
 }
 
         void Deque::Print()
         {
-            if (n != 0){
-                for (int i = 0;  i < max; i++)
+            if (length != 0){
+                for (int i = 0;  i < length; i++)
                 {
-                    cout <<  d[i] << " ";
+                    cout <<  d[i] << ", ";
                 }
                 cout << endl;
             }
