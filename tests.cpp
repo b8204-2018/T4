@@ -1,48 +1,37 @@
-#include "base64.hpp"
+#include "src/struct.h"
 #include "gtest/gtest.h"
 
-TEST(Encode, threeLetters) {
-char *s = base64_encode((const char*)"ups");
-EXPECT_STREQ(s, "dXBz");
+TEST ( Test, addElemInSpisok){
+    spisok List;
+    int Elem(666);
+    int razmer(6);
+    List.spisok::randomSpisok(razmer);
+    List.spisok::addElemInSpisok(Elem);
+    EXPECT_EQ(Elem, List.spisok::Head->value);
 }
 
-
-TEST(Encode, fourLetters) {
-char *s = base64_encode((const char*)"oops");
-EXPECT_STREQ(s, "b29wcw==");
+TEST ( Test, addElemInEmptySpisok){
+    spisok List;
+    int Elem(666);
+    List.spisok::addElemInSpisok(Elem);
+    EXPECT_EQ(Elem, List.spisok::Head->value);
+    EXPECT_EQ(Elem, List.spisok::Tail->value);
 }
 
-TEST(Encode, fiveLetters) {
-char *s = base64_encode((const char*)"param");
-EXPECT_STREQ(s, "cGFyYW0=");
+TEST ( Test, deleteElemInSpisok){
+    spisok List;
+    int Elem1(12);
+    int Elem2(21);
+    List.spisok::addElemInSpisok(Elem1);
+    List.spisok::addElemInSpisok(Elem2);
+    List.spisok::deleteElem();
+    EXPECT_EQ(Elem2, List.spisok::Head->value);
+    EXPECT_EQ(Elem2, List.spisok::Tail->value);
 }
 
+//TEST ( Test, delAllSpisok){
 
-TEST(Encode, empty) {
-char *s = base64_encode((const char*)"");
-EXPECT_STREQ(s, "");
-}
-
-TEST(Decode, noEqualSigns) {
-char *s = base64_decode((const char*)"ZG9n");
-EXPECT_STREQ(s, "dog");
-}
-
-
-TEST(Decode, twoEqualSigns) {
-char *s = base64_decode((const char*)"ZG9nZw==");
-EXPECT_STREQ(s, "dogg");
-}
-
-TEST(Decode, empty) {
-char *s = base64_decode((const char*)"");
-EXPECT_STREQ(s, "");
-}
-
-TEST(Decode, oneEqualSign) {
-char *s = base64_decode((const char*)"ZG9nIGc=");
-EXPECT_STREQ(s, "dog g");
-}
+//}
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);

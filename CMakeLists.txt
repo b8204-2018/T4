@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.1)
-project(mylib)
+project(T4)
 
 enable_testing()
 
@@ -15,7 +15,7 @@ add_subdirectory(googletest)
 include_directories(src) # необходимо для того, чтобы писать в директиве просто lib.h
 include_directories(googletest/googletest/include)
 
-set(SOURCE_FILES src/base64.cpp)
+set(SOURCE_FILES src/struct.cpp)
 
 add_executable(main main.cpp ${SOURCE_FILES})
 add_executable(tests tests.cpp ${SOURCE_FILES})
