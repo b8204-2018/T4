@@ -27,16 +27,23 @@ void spisok::addElemInSpisok(int value){
     }
 }
 
-void spisok::deleteElem() {
+int spisok::deleteElem() {
     elementSpiska *delElem = Tail;
     elementSpiska *newTail = Head;
+    int returnValue(0);
     bool found = false;
+    if ((Head == nullptr)&&(Tail == nullptr)){
+        cout << "Your list is empty!" << endl;
+        return 0;
+    }
     if (delElem == newTail) {
+        returnValue = delElem->value;
         delete delElem;
         Head = Tail = nullptr;
     } else {
         while (found == false) {
             if (newTail->Next == delElem) {
+                returnValue = delElem->value;
                 delete delElem;
                 newTail->Next = nullptr;
                 Tail = newTail;
@@ -45,6 +52,9 @@ void spisok::deleteElem() {
             newTail = newTail->Next;
         }
     }
+
+    cout << "The value of the element that left the queue :\"" << returnValue << "\"" << endl;
+    return returnValue;
 }
 
 void spisok::delAllSpisok(){

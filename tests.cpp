@@ -24,14 +24,17 @@ TEST ( Test, deleteElemInSpisok){
     int Elem2(21);
     List.spisok::addElemInSpisok(Elem1);
     List.spisok::addElemInSpisok(Elem2);
-    List.spisok::deleteElem();
-    EXPECT_EQ(Elem2, List.spisok::Head->value);
-    EXPECT_EQ(Elem2, List.spisok::Tail->value);
+    EXPECT_EQ(Elem1, List.spisok::deleteElem());
+    EXPECT_EQ(Elem2, List.spisok::deleteElem());
 }
 
-//TEST ( Test, delAllSpisok){
-
-//}
+TEST ( Test, delAllSpisok){
+    spisok List;
+    int razmer(6);
+    List.spisok::randomSpisok(razmer);
+    List.spisok::delAllSpisok();
+    EXPECT_EQ(nullptr, List.spisok::Head);
+}
 
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);

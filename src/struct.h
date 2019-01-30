@@ -13,7 +13,7 @@ struct spisok{
     spisok();
     ~spisok();
     void addElemInSpisok(int value);
-    void deleteElem();
+    int deleteElem();
     void delAllSpisok();
     void printSpisok();
     void randomSpisok(int razmer);
