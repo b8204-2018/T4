@@ -32,6 +32,9 @@ void push(queue *q, int value) {
 }
 
 void pop(queue *q) {
+        if (q->size == 0) {
+        throw length_error("queue is already empty");
+    } else {
     if (Empty(q) != 1) {
 
         q->cur = q->Head;
@@ -49,6 +52,7 @@ void pop(queue *q) {
         q->size--;
 
     }
+}
 }
 
 int length(queue *q) {
