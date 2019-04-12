@@ -11,7 +11,7 @@ TEST(Length, empty) {
 }
 
 
-TEST(left_push, Push) {
+TEST(left_push, Push)  {
     List *head(nullptr);
     for (int i = 1; i <= 25; i++){
         left_push(&head, i);

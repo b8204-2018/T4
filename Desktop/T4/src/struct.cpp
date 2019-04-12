@@ -17,7 +17,7 @@ int length (List *head) {
 
 void left_push(List **head, int data) {
 
-    List *tmp =new List; //создаем новый узел
+    List *tmp =new List;  //создаем новый узел
     tmp->value = data;  //присваиваем ему значение
     tmp->next = (*head); //присваиваем указателю tmp адрес предыдущего узла
     (*head) = tmp; //присваиваем указателю head адрес нового узла

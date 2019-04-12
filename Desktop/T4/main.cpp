@@ -12,13 +12,13 @@ int main() {
     fromArray(&head, arr, 10);
     int select(0);
     do {
-        printf("nazhmi 1 chtoby dobavit` element v nachalo\n"
-               "nazhmi 2 chtoby dobavit` element v konec\n"
-               "nazhmi 3 chtoby udalit' element iz nachala\n"
-               "nazhmi 4 chtoby udalit' element s konca\n"
-               "nazhmi 5 chtoby vyvesti spisok\n"
-               "nazhmi 6 chtoby vyvesti dlinu spiska\n"
-               "nazhmi 0 to finish the program\n");
+        printf("nazhmi 1 chtoby dobavit` element v nachalo \n"
+               "nazhmi 2 chtoby dobavit` element v konec \n"
+               "nazhmi 3 chtoby udalit' element iz nachala \n"
+               "nazhmi 4 chtoby udalit' element s konca \n"
+               "nazhmi 5 chtoby vyvesti spisok \n"
+               "nazhmi 6 chtoby vyvesti dlinu spiska \n"
+               "nazhmi 0 to finish the program \n");
         scanf("%d", &select);
         if (select == 1){
             int value;

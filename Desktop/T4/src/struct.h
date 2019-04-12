@@ -19,6 +19,6 @@ int left_pop(List **head);
 int right_pop(List **head);
 void right_push(List *head, int value);
 void print(const List *head);
-void fromArray(List **head, int *arr, int size);
+void fromArray(List **head, int *arr, int size );
 
 #endif //UNTITLED2_STRUCT_H
